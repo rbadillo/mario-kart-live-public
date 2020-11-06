@@ -1,0 +1,14 @@
+[Unit]
+Description=Car WebRTC Control
+After=network.target qmi_reconnect.service uv4l_raspicam.service
+
+[Service]
+ExecStart=/bin/bash car_control_p1.sh
+WorkingDirectory=/usr/src
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+RestartSec=15
+
+[Install]
+WantedBy=multi-user.target

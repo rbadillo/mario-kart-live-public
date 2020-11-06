@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Descubre Near</title>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webrtc-adapter/6.4.0/adapter.min.js" ></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js" ></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.min.js" ></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+<script type="text/javascript" src="janus.js" ></script>
+<script type="text/javascript" src="sdc_p1.js"></script>
+<script>
+	$(function() {
+		$(".navbar-static-top").load("sdc_navbar.html", function() {
+			$(".navbar-static-top li.dropdown").addClass("active");
+			$(".navbar-static-top a[href='car3.html']").parent().addClass("active");
+		});
+		$(".footer").load("sdc_footer.html");
+	});
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cerulean/bootstrap.min.css" type="text/css"/>
+<link rel="stylesheet" href="css/demo.css" type="text/css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css"/>
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-static-top">
+</nav>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="page-header">
+				<h1>Car + WebRTC
+					<button class="btn btn-default" autocomplete="off" id="start">Start</button>
+				</h1>
+			</div>
+			<div class="container" id="details">
+				<div class="row">
+					<div class="col-md-12">
+						<h3>Introduction</h3>
+						<p>This demo is an example of how you can use a Raspberry Pi + UV4L
+						+ Janus Gateway + WebRTC to drive a RC car over 4G/LTE.</p>
+						<p>To use the demo, just insert a username to join the broadcasting room.
+						This will allow you to see the Raspberry Pi video and send commands
+					    using your keyboard.</p>
+						<p>Press the <code>Start</code> button above to launch the demo.</p>
+					</div>
+				</div>
+			</div>
+			<div class="container hide" id="videojoin">
+				<div class="row">
+					<span class="label label-info" id="you"></span>
+					<div class="col-md-12" id="controls">
+						<div class="input-group margin-bottom-md hide" id="registernow">
+							<span class="input-group-addon">@</span>
+							<input autocomplete="off" class="form-control" type="text" placeholder="Choose a display name" id="username" onkeypress="return checkEnter(this, event);" />
+							<span class="input-group-btn">
+								<button class="btn btn-success" autocomplete="off" id="register">Join the room</button>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="container hide" id="videos">
+
+				<div class="panel panel-default hide">
+					<div class="panel-heading">
+						<h3 class="panel-title">Local Video <span class="label label-primary hide" id="publisher"></span>
+							<div class="btn-group btn-group-xs pull-right hide">
+								<div class="btn-group btn-group-xs">
+									<button id="bitrateset" autocomplete="off" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+										Bandwidth<span class="caret"></span>
+									</button>
+									<ul id="bitrate" class="dropdown-menu" role="menu">
+										<li><a href="#" id="0">No limit</a></li>
+										<li><a href="#" id="128">Cap to 128kbit</a></li>
+										<li><a href="#" id="256">Cap to 256kbit</a></li>
+										<li><a href="#" id="512">Cap to 512kbit</a></li>
+										<li><a href="#" id="1024">Cap to 1mbit</a></li>
+										<li><a href="#" id="1500">Cap to 1.5mbit</a></li>
+										<li><a href="#" id="2000">Cap to 2mbit</a></li>
+									</ul>
+								</div>
+							</div>
+						</h3>
+					</div>
+					<div class="panel-body" id="videolocal"></div>
+				</div>
+
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Remote Video #1 <span class="label label-info hide" id="remote1"></span></h3>
+					</div>
+					<div class="panel-body relative" id="videoremote1"></div>
+				</div>
+				<div>
+					<button class="btn btn-default" autocomplete="off" id="fullscreen" onclick="fullscreen()">Fullscreen</button>
+					<button class="btn btn-default" autocomplete="off" id="keyboard" onclick="enableDisableKeyboard()">Enable Keyboard</button>
+					<button class="btn btn-default" autocomplete="off" id="ping" onclick="pingRPI()">Ping RPI</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<hr>
+	<div class="footer">
+	</div>
+</div>
+
+</body>
+</html>
