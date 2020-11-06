@@ -16,7 +16,7 @@ La carpeta de server contiene 2 sub-carpetas:
 
 1) car_control: La cual contiene un websocket server que es utilizado como un relay para mandar comandos del browser al servidor central y este al robot.
 
-2) webapp: La cual contiene la web app para que el piloto pueda ver el video streaming del carro y el mapa con la posición actual del robot.
+2) webapp: La cual contiene la web app para que el piloto pueda ver el video streaming del carro.
 
 # Notas
 
