@@ -1,4 +1,4 @@
-# Racing Cars + WebRTC
+# Mario Kart Live + WebRTC
 
 Este repositorio incluye el código utilizado en el video: "Invité a jugar a mis amigos Mario Kart en la vida real!".
 
@@ -14,7 +14,7 @@ La carpeta de raspberry_pi contiene 2 sub-carpetas:
 
 La carpeta de server contiene 2 sub-carpetas:
 
-1) car_control_gps: La cual contiene un websocket server que es utilizado como un relay para mandar comandos del browser al servidor central y este al robot.
+1) car_control: La cual contiene un websocket server que es utilizado como un relay para mandar comandos del browser al servidor central y este al robot.
 
 2) webapp: La cual contiene la web app para que el piloto pueda ver el video streaming del carro y el mapa con la posición actual del robot.
 
@@ -31,6 +31,6 @@ Para poder hacer funcionar el video streaming desde la Raspberry Pi utilizando W
 2) https://www.linux-projects.org/uv4l/installation/
 3) https://www.linux-projects.org/uv4l/tutorials/janus-gateway/
 
-Parte del código que es utilizado para la comunicación de los motores y servos del robot fue obtenido del los tutoriales del kit de robótica:
+La libreria utilizada para la comunicación con los motores del robot fue obtenido de los tutoriales de Adafruit (Motor Controlador):
 
-1) https://github.com/Freenove/Freenove_4WD_Smart_Car_Kit_for_Raspberry_Pi
+1) https://learn.adafruit.com/adafruit-dc-and-stepper-motor-hat-for-raspberry-pi/installing-software
